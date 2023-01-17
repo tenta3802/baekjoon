@@ -25,13 +25,16 @@ public class Main {
 			oilList.add(oilPrice);
 		}
 		int minPrice = Collections.min(subOilList);
-		subOilList = subOilList.subList(0, minPrice);
+		int indexm = oilList.indexOf(minPrice);
+		subOilList = subOilList.subList(0, indexm + 1);
 		int sum = 0;
 		for (int i = 0; i < subOilList.size(); i++) {
 			int point = subOilList.get(i);
 			for (int j = i+1; j < subOilList.size(); j++) {
 				if (point > subOilList.get(j)) {
 					sum += point * caculateDisSum(disList, j);
+					i = subOilList.indexOf(subOilList.get(j));
+					break;
 				}
 			}
 		}
